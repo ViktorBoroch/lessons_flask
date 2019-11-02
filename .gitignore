@@ -4,3 +4,4 @@ config.py
 __pycache__/
 test.py
 *.db
+.vscode
