@@ -29,6 +29,10 @@ class User(db.Model, UserMixin):
     def check_password(self, password):
         return check_password_hash(self.password, password)
 
+    @property
+    def is_admin(self):
+        return self.role == 'admin'
+
     def __repr__(self):
         # return '<News {} {}>'.format(self.title, self.url)
-        return f'<News {self.username} - {self.role}>'
+        return f'<News {self.username} - {self.role} - id={self.id}>'
