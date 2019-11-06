@@ -22,4 +22,4 @@ class User(db.Model, UserMixin):
 
     def __repr__(self):
         # return '<News {} {}>'.format(self.title, self.url)
-        return f'<News {self.username} - {self.role} - id={self.id}>'
+        return f'<User {self.username} - {self.role} - id={self.id}>'

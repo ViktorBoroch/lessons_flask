@@ -3,6 +3,7 @@ from flask import flash, render_template, redirect, url_for
 from webapp.user.forms import LoginForm, RegistrationForm
 from webapp.user.models import User
 from webapp.db import db
+from webapp.utils import get_redirect_target
 
 from flask import Blueprint
 
@@ -12,7 +13,7 @@ blueprint = Blueprint('user', __name__, url_prefix='/users')
 def login():
     if current_user.is_authenticated:
         flash('Вы уже авторизованы')
-        return redirect(url_for('news.index'))
+        return redirect(get_redirect_target())
     print(current_user)
     title = 'Авторизация'
     login_form = LoginForm()
@@ -26,7 +27,7 @@ def process_login():
         if user and user.check_password(form.password.data):
             login_user(user, remember=form.remember_me.data)
             flash('Вы вошли на сайт')
-            return redirect(url_for('news.index'))
+            return redirect(get_redirect_target())
     
     flash('Неправильные имя пользователя или пароль')
     return redirect(url_for('user.login'))
